@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<body>
+<script type="text/javascript">
+	if('webkitAudioContext' in window) {
+    var myAudioContext = new webkitAudioContext();
+}
+request = new XMLHttpRequest();
+request.open('GET', 'car drive.wav', true);
+request.responseType = 'arraybuffer';
+request.addEventListener('load', bufferSound, false);
+request.send();
+var mySource;
+function bufferSound(event) {
+    var request = event.target;
+    var source = cardrive.wav.createBufferSource();
+    source.buffer = cardrive.wav.createBuffer(request.response, false);
+    mySource = source;
+}
+source.connect(car drive.wav.destination);
+// play right now (0 seconds from now)
+source.noteOn(0);
+</script>
+</body>
+</html>

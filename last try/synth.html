@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <body>
+<script type="text/javascript">
+const context = new AudioContext(); 
+const oscillatorNode = context.createOscillator();
+// nodes contain a reference to their context
+console.log(oscillatorNode.context)
+// number of inputs is 0 for source nodes
+console.log(oscillatorNode.numberOfInputs)
+const gainNode = new GainNode(context);
+const connectedNode = oscillatorNode.connect(gainNode);
+connectedNode.connect(context.destination);
+</script>
+<div>
+    <button onclick="startAudio()">Start</button>
+    <button onclick="endAudio()">Stop</button>
+</div>
+<script>
+    const context = new AudioContext();
+    let oscillatorAudioNode;
+    const startAudio = function() {
+        // allow the user to play sound
+        context.resume();
+        if(oscillatorAudioNode) oscillatorAudioNode.stop();
+        // create an oscillator node
+        oscillatorAudioNode = context.createOscillator();
+        // connect it to the destination
+        oscillatorAudioNode.connect(context.destination);
+        // start the oscillator
+        oscillatorAudioNode.start();
+    
+    const endAudio = function() {
+        oscillatorAudioNode.stop();
+    }
+</script>
+</body>
+</html>
